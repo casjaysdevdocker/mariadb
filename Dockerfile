@@ -14,7 +14,7 @@ ARG USER="root"
 
 ARG SERVICE_PORT="80"
 ARG EXPOSE_PORTS="80 3306"
-ARG PHP_VERSION="system"
+ARG PHP_VERSION="php81"
 ARG NODE_VERSION="system"
 ARG NODE_MANAGER="system"
 
@@ -133,9 +133,7 @@ RUN set -ex \
   echo "Custom Settings"; \
   export PHP_VERSION=$PHP_VERSION NODE_VERSION=$NODE_VERSION NODE_MANAGER=$NODE_MANAGER; \
   bash -c "$(curl -q -LSsf "https://github.com/templatemgr/apache2/raw/main/install.sh")"; \
-  export PHP_VERSION=$PHP_VERSION NODE_VERSION=$NODE_VERSION NODE_MANAGER=$NODE_MANAGER; \
-  ;bash -c "$(curl -q -LSsf "https://github.com/templatemgr/php/raw/main/install.sh")"; \
-  export PHP_VERSION=$PHP_VERSION NODE_VERSION=$NODE_VERSION NODE_MANAGER=$NODE_MANAGER; \
+  bash -c "$(curl -q -LSsf "https://github.com/templatemgr/php/raw/main/install.sh")"; \
   bash -c "$(curl -q -LSsf "https://github.com/templatemgr/mariadb/raw/main/install.sh")"; \
   echo ""
 
