@@ -19,17 +19,17 @@ dockermgr update mariadb
 ## Install and run container
   
 ```shell
-mkdir -p "$HOME/.local/share/srv/docker/mariadb/rootfs"
+mkdir -p "$HOME/.local/share/srv/docker/mariadb/volumes"
 git clone "https://github.com/dockermgr/mariadb" "$HOME/.local/share/CasjaysDev/dockermgr/mariadb"
-cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/mariadb/rootfs/." "$HOME/.local/share/srv/docker/mariadb/rootfs/"
+cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/mariadb/rootfs/." "$HOME/.local/share/srv/docker/mariadb/volumes/"
 docker run -d \
 --restart always \
 --privileged \
 --name casjaysdevdocker-mariadb \
 --hostname mariadb \
 -e TZ=${TIMEZONE:-America/New_York} \
--v "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/rootfs/data:/data:z" \
--v "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/rootfs/config:/config:z" \
+-v "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/volumes/data:/data:z" \
+-v "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/volumes/config:/config:z" \
 -p 80:80 \
 casjaysdevdocker/mariadb:latest
 ```
@@ -46,8 +46,8 @@ services:
       - TZ=America/New_York
       - HOSTNAME=mariadb
     volumes:
-      - "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/rootfs/data:/data:z"
-      - "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/rootfs/config:/config:z"
+      - "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/volumes/data:/data:z"
+      - "$HOME/.local/share/srv/docker/casjaysdevdocker-mariadb/volumes/config:/config:z"
     ports:
       - 80:80
     restart: always
