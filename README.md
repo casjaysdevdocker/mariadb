@@ -19,8 +19,8 @@ dockermgr update mariadb
 ## Install and run container
   
 ```shell
-dockerHome="/var/lib/srv/$USER/docker/casjaysdevdocker/mariadb/mariadb/latest/rootfs"
-mkdir -p "/var/lib/srv/$USER/docker/mariadb/rootfs"
+dockerHome="/srv/$USER/docker/casjaysdevdocker/mariadb/mariadb/latest/rootfs"
+mkdir -p "/srv/$USER/docker/mariadb/rootfs"
 git clone "https://github.com/dockermgr/mariadb" "$HOME/.local/share/CasjaysDev/dockermgr/mariadb"
 cp -Rfva "$HOME/.local/share/CasjaysDev/dockermgr/mariadb/rootfs/." "$dockerHome/"
 docker run -d \
@@ -47,8 +47,8 @@ services:
       - TZ=America/New_York
       - HOSTNAME=mariadb
     volumes:
-      - "/var/lib/srv/$USER/docker/casjaysdevdocker/mariadb/mariadb/latest/rootfs/data:/data:z"
-      - "/var/lib/srv/$USER/docker/casjaysdevdocker/mariadb/mariadb/latest/rootfs/config:/config:z"
+      - "/srv/$USER/docker/casjaysdevdocker/mariadb/mariadb/latest/rootfs/data:/data:z"
+      - "/srv/$USER/docker/casjaysdevdocker/mariadb/mariadb/latest/rootfs/config:/config:z"
     ports:
       - 80:80
     restart: always
